@@ -48,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
                         sendText("Abandonó el chat");
                     }
                 }.start();
+                try {
+                    flujoE.close();
+                    flujoS.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 System.exit(0);
 
@@ -81,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     private void sendText(String text) {
         try {
             flujoS.writeUTF(text);
+
         } catch (IOException ex) {
             run = false;
         }
